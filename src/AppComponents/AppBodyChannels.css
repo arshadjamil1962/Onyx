@@ -1,0 +1,102 @@
+.AppBodyChannelsArea {
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px #ccc;
+    padding: 5px;
+    width: 230px;
+    margin: 5px;
+    float: left;
+    text-align: center;
+}
+
+.AppBodyChannelsArea h5 {
+    font-size: large;
+    background-image: linear-gradient(to left, red, green, blue);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0;
+    text-align-last: center;
+    height: 8vh;
+}
+
+.AppBodyChannelsArea h6 {
+    font-size: large;
+    background-image: linear-gradient(to left, red, green, blue);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0;
+    margin-bottom: 5px;
+    text-align-last: center;
+}
+
+.AppBodyChannelsAreaImg Img {
+    width: 100%;
+    height: 20vh;
+    border-radius: 20%;
+}
+
+.AppBodyChannelsAreaDescription{
+    font-size:smaller;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow: auto;
+    text-overflow: ellipsis;
+    height: 15vh;
+    text-align: left;
+}
+
+.AppBodyChannelsAreaStats{
+    font-size: small;
+    background-image: linear-gradient(to left, red, green, blue);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0;
+    margin-bottom: 5px;
+    text-align-last: center;
+    border-top:double;
+    border-bottom: double;
+    border-color: blue;
+
+}
+.AppBodyChannelsAreaStats p {
+    font-size: small;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    margin: 0px;
+}
+
+
+.AppBodyChannelsArea button {
+    position: relative;
+    color: white;
+    outline: none;
+    font-size: small;
+}
+
+.AppBodyChannelsArea .btnVideos {
+    float: right;
+    background-color: red;
+    border-radius: 50%;
+    width: 75px;
+    /* height: 50px; */
+    border: double;
+}
+
+.AppBodyChannelsArea .btnStatistics {
+    float: none;
+    background-color: #f5ba13;
+    border-radius: 25%;
+    width: 80px;
+    /* height: 50px; */
+    border: double;
+}

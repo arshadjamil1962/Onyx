@@ -1,0 +1,61 @@
+.AppBodyOptionsContainer {
+    width: 100%;
+    /* min-height: 12vh; */
+}
+
+.AppBodyOptionsFilter {
+    /* display: flex; */
+    align-items: center;
+    justify-content: space-around;
+    font-size: small;
+}
+
+.AppBodyOptionsFiltertitle {
+    font-size: large;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: linear-gradient(to left, red, green, blue, red);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 10px;
+    border-bottom: double;
+    border-color: blue;
+}
+
+.AppBodyOptionsFilter select {
+    font-size: small;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* .AppBodyOptionsFilterRegion {
+    display: flex;
+    align-items: center;
+    font-size: small;
+  }
+  
+  .AppBodyOptionsFilterLanguage {
+    display: flex;
+    align-items: center;
+    font-size: small;
+  }
+  
+  .AppBodyOptionsFilterTopic{
+  display: flex;
+  align-items: center;
+  font-size: small;
+}
+  
+  .AppBodyOptionsFilterOrder{
+    display: flex;
+    align-items: center;
+    font-size: small;
+    } */
+
+.page-link {
+    width: max-content;
+    margin: 5px;
+}

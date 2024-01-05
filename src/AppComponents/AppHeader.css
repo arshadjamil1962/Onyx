@@ -1,0 +1,56 @@
+.AppHeaderContainer {
+  width: 100%;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  border-radius: 5%;
+}
+
+.AppHeaderContainerLogo {
+  display: flex;
+  width: 25%;
+}
+
+header {
+  background-color: #f5ba13;
+  /* margin: auto -16px; */
+  padding: 10px 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.headerH6 h6 {
+  /* font-family: "McLaren", cursive; */
+  font-size: x-large;
+  margin: 0px;
+  background-image: linear-gradient(to left, red, green, blue);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.headerH6 p {
+  font-size: small;
+  margin: 0px;
+}
+
+.App-logo {
+  width: 100px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 20%;
+}
+
+.AppHeaderContainerFilter {
+  width: 75%;
+}
+
+.searchImgBtn {
+  background-image: url('../ImgComponents/search1.jpg');
+  width: 50px;
+  height: -webkit-fill-available;
+  background-size: cover;
+  background-position: center;
+  border: none;
+  border-radius: 0% 25% 25% 0%;
+}

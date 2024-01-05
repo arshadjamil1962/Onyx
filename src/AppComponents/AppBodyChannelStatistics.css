@@ -1,0 +1,142 @@
+.AppBodyStatisticsArea {
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px #ccc;
+    padding: 5px;
+    width: 100%;
+    /* margin: 10px; */
+    float: left;
+    text-align: center;
+}
+
+.AppBodyStatisticsAreaHeader {
+    display: flex;
+}
+
+.AppBodyStatisticsAreaTitle {
+    display: flex;
+    width: 80%;
+    align-items: flex-end;
+    margin-left: 10px;
+
+}
+
+.AppBodyStatisticsAreaImg Img {
+    width: 75px;
+    height: 75px;
+    border-radius: 20%;
+}
+
+.AppBodyStatisticsAreaAbout {
+    width: 100%;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    ;
+}
+
+.AppBodyStatisticsAreaAbout h5 {
+    font-size: x-large;
+    margin: 0;
+    text-align: left;
+    background-image: linear-gradient(to left, red, green, blue);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.AppBodyStatisticsAreaAbout h6 {
+    font-size: medium;
+    margin: 0;
+    text-align: left;
+}
+
+.AppBodyStatisticsAreaStats {
+    font-size: small;
+    background-image: linear-gradient(to left, red, green, blue);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0;
+    text-align-last: right;
+    width: 20%;
+    margin-right: 10px;
+}
+
+.AppBodyStatisticsAreaStats p {
+    font-size: small;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    margin: 0px;
+}
+
+.AppBodyStatisticsAreaDescription {
+    font-size: smaller;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow: auto;
+    text-overflow: ellipsis;
+    /* height: 15vh; */
+    text-align: left;
+    padding: 15px;
+}
+
+.AppBodyStatistics {
+    width: 100%;
+    border-radius: 10px;
+    background-color: antiquewhite;
+    /* display: flex;
+    align-items: center; */
+}
+
+.AppBodyStatisticsHeader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.AppBodyStatisticsHeaderLabel {
+    width: 10%;
+}
+
+.AppBodyStatisticsHeaderLabel p {
+    font-size: medium;
+    background-image: linear-gradient(to left, red, green, blue);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.AppBodyStatisticsHeaderColumn {
+    width: 30%;
+    border: groove;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.AppBodyStatisticsHeaderImg {
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+}
+
+.AppBodyStatisticsHeaderp {
+    font-size: small;
+    margin: 0px;
+    background-image: linear-gradient(to left, red, green, blue);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+
+.AppBodyStatisticsDetail {
+    width: 100%;
+}

@@ -1,0 +1,104 @@
+.AppBodyContainer {
+  display: inline-block;
+  margin: 20px auto 20px auto;
+  background: #fff;
+  padding: 15px;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px rgb(138, 137, 137);
+  width: 100%;
+  min-height: 75vh;
+  background-color: antiquewhite;
+}
+
+.AppBodyContainer h6 {
+  font-size: large;
+  background-image: linear-gradient(to left, red, green, blue, red);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0;
+  text-align-last: start;
+}
+
+.AppBodyContainerHeader {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px;
+}
+
+.AppBodyContainerTitle {
+  align-self: center;
+}
+
+.AppBodyContainerSelections {
+  width: 65%;
+  font-size: small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(to left, red, green, blue, red);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.AppBodyContainerSelectionsItem {
+  margin: 0px 10px;
+}
+
+.AppBodyContainerPageSelector {
+  display: flex;
+  align-content: center;
+}
+
+.AppBodyContainerPageSelector button {
+  opacity: 75%;
+  border-color: black;
+}
+
+.AppBodyContainerPageSelector button:hover {
+  opacity: 100%;
+  transform: scale(1.2);
+  border-color: #666666;
+}
+
+.AppBodyContainerPageSelector button:disabled {
+  opacity: 50%;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.AppBodyContainerBody {
+  display: flex;
+  margin: 0px;
+}
+
+.AppBodyContainerBodyOptions {
+  width: 18%;
+  margin: 10px auto 10px auto;
+  background: #fff;
+  padding: 15px;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px rgb(138, 137, 137);
+  min-height: 60vh;
+  background-color: antiquewhite;
+}
+
+.AppBodyContainerBodyChannels {
+  width: 80%;
+  margin: 10px auto 10px auto;
+  background: #fff;
+  padding: 15px;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px rgb(138, 137, 137);
+  min-height: 60vh;
+  background-color: antiquewhite;
+}
+
+.emptySearchImgArea {
+  display: flex;
+  justify-content: center;
+  height: 300px;
+}

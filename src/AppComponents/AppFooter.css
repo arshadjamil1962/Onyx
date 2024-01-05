@@ -1,0 +1,19 @@
+footer {
+    /* position: absolute; */
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+  }
+  
+  footer p {
+    color: #f5ba13;
+    font-family: "McLaren", cursive;
+    font-weight: 200;
+    background-image: linear-gradient(to left, red, blue, green, red);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
