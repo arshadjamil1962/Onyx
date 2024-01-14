@@ -1,0 +1,117 @@
+.AppComparisonCartArea {
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px #ccc;
+    padding: 5px;
+    width: 100%;
+    /* margin: 10px; */
+    float: left;
+    text-align: center;
+    background-color: rgb(114, 206, 230);
+    display:flex;
+}
+
+.AppComparisonCartLabelsArea {
+    width: 20%;
+    margin: 10px auto 10px auto;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 1px 5px rgb(138, 137, 137);
+    min-height: 60vh;
+    background-color: antiquewhite;
+}
+
+.AppComparisonCartLabelsHeader {
+    width: auto;
+    align-items: center;
+    border-bottom: groove;
+    border-radius: 10px;
+    margin: 40px 5px 5px 5px;
+}
+
+.AppComparisonCartLabelsHeaderImg {
+    width: 75%;
+    height: 75px;
+    border-radius: 10px;
+}
+
+
+.AppComparisonCartLabelsHeaderh6 {
+    font-size: large;
+    margin: 0px;
+    background-image: linear-gradient(to left, red, green, blue);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.AppComparisonCartLabelsHeaderp {
+    font-size: small;
+    margin: 0px;
+    background-image: linear-gradient(to left, red, green, blue);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    border-bottom:ridge;
+}
+
+.AppComparisonCartLabelsDividerp {
+margin: 10px 0px 0px 0px;
+font-size: x-small;
+}
+
+.AppComparisonChannelsArea {
+    width: 59%;
+    margin: 10px auto 10px auto;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 1px 5px rgb(138, 137, 137);
+    min-height: 60vh;
+    background-color: antiquewhite;
+    display: flex;
+  }
+  
+  .AppComparisonCartLabelsVideop {
+    margin: 15px 5px 5px 5px;
+    font-size: small;
+    border-bottom: groove;
+    border-radius: 10px;
+}
+
+
+.AppComparisonCartChartsArea {
+    width: 20%;
+    margin: 10px auto 10px auto;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 1px 5px rgb(138, 137, 137);
+    min-height: 60vh;
+    background-color: antiquewhite;
+}
+
+.AppComparisonCartChartsHeader {
+    width: auto;
+    align-items: center;
+    border-bottom: groove;
+    border-radius: 10px;
+    margin: 40px 5px 5px 5px;
+}
+
+.AppComparisonCartChartsHeaderImg {
+    width: 75%;
+    height: 75px;
+    border-radius: 10px;
+}
+
+
+.AppComparisonCartChartsHeaderh6 {
+    font-size: large;
+    margin: 0px;
+    background-image: linear-gradient(to left, red, green, blue);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}

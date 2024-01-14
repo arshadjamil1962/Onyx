@@ -42,7 +42,13 @@ header {
 }
 
 .AppHeaderContainerFilter {
-  width: 75%;
+  width: 65%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.AppHeaderFilterSearch {
+  width: 95%;
 }
 
 .searchImgBtn {
@@ -53,4 +59,42 @@ header {
   background-position: center;
   border: none;
   border-radius: 0% 25% 25% 0%;
+}
+
+.helpImgBtn {
+  background-image: url('../ImgComponents/tellquery2.jpg');
+  width: 50px;
+  height: -webkit-fill-available;
+  background-size: cover;
+  background-position: center;
+  border: none;
+  border-radius: 25%;
+}
+
+.AppHeaderContainerComparator {
+  width: 10%;
+  height: 40px;
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.comparatorImgBtn {
+  background-image: url('../ImgComponents/compare1.jpg');
+  width: 50px;
+  height: -webkit-fill-available;
+  background-size: cover;
+  background-position: center;
+  border: none;
+  border-radius: 0% 25% 25% 0%;
+}
+
+.comparatorListImgBtn {
+  background-image: url('../ImgComponents/list2.jpg');
+  width: 50px;
+  height: -webkit-fill-available;
+  background-size: cover;
+  background-position: center;
+  border: none;
+  border-radius: 25% 0% 0% 25%;
+  /* margin-right: 2px; */
 }

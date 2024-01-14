@@ -53,6 +53,11 @@
   align-content: center;
 }
 
+.AppBodyContainerPageSelector h6{
+  font-size: small;
+  margin-right: 5px;
+}
+
 .AppBodyContainerPageSelector button {
   opacity: 75%;
   border-color: black;

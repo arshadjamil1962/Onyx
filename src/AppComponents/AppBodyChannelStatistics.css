@@ -140,3 +140,12 @@
 .AppBodyStatisticsDetail {
     width: 100%;
 }
+
+.AppBodyEmptyArea {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.AppBodyStatisticsEmptyImg {
+width : 25%;
+}

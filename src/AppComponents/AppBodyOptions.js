@@ -75,11 +75,21 @@ export default function AppBodyOptions(props) {
                 </div>
                 <div>
                     Published After:
-                    <DatePicker selected={datePublishedBefore} dateFormat="dd-MMM-yyyy" onChange={(date) => handleDateEntry('resultsPublishedBefore', date)} />
+                    <DatePicker selected={datePublishedBefore}
+                        dateFormat="dd-mm-yyyy"
+                        // Add props to DatePicker
+                        showYearDropdown
+                        scrollableMonthYearDropdow
+                        onChange={(date) => handleDateEntry('resultsPublishedBefore', date)} />
                 </div>
                 <div>
                     Published Before:
-                    <DatePicker selected={datePublishedAfter} dateFormat="dd-MMM-yyyy" onChange={(date) => handleDateEntry('resultsPublishedAfter', date)} />
+                    <DatePicker selected={datePublishedAfter}
+                        dateFormat="dd-mm-yyyy"
+                        // Add props to DatePicker
+                        showYearDropdown
+                        scrollableMonthYearDropdow
+                        onChange={(date) => handleDateEntry('resultsPublishedAfter', date)} />
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
+import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -9,6 +10,8 @@ import languagesData from '../DataComponents/Languages.json';
 import categoriesData from '../DataComponents/Categories.json';
 import topicsParentData from '../DataComponents/TopicsParent.json';
 import topicsData from '../DataComponents/Topics.json';
+import videoDurationsData from '../DataComponents/VideoDurations.json';
+
 import channelsOrderingData from '../DataComponents/ChannelsOrdering.json';
 import channelsListingData from '../DataComponents/ChannelsList.json';
 
@@ -18,6 +21,7 @@ import { AppFooter } from './AppFooter'
 import AppBody from "./AppBody";
 
 import { youTubeApiKey, youtubeUrl, notifyAlert } from "./AppComponents";
+import AppComparisonCart from "./AppComparisonCart";
 
 function AppHome() {
   const year = new Date().getFullYear();
@@ -29,6 +33,7 @@ function AppHome() {
   const [topicsParents] = useState(topicsParentData);
   const [topics] = useState(topicsData);
   const [ordering] = useState(channelsOrderingData);
+  const [videoDurations] = useState(videoDurationsData);
 
   const regionDefault = "00";
   const languageDefault = "00";
@@ -38,8 +43,11 @@ function AppHome() {
   const resultsPerPageDefault = '10';
   const resultsOrderingDefault = "relevance";
   const pageTagDefault = '';
+  const pagePublishedDefault = '';
+  const comparisonCartListDefault = 3;
 
   const [channels, setChannels] = useState([]);
+  const [comparisonCart, setComparisonCart] = useState([]);
 
   const [paramInUse, setParamInUse] = useState({
     regionId: regionDefault,
@@ -49,13 +57,14 @@ function AppHome() {
     topicId: topicDefault,
     resultsPerPage: resultsPerPageDefault,
     resultsOrdering: resultsOrderingDefault,
-    resultsPublishedBefore: "",
-    resultsPublishedAfter: "",
+    resultsPublishedBefore: pagePublishedDefault,
+    resultsPublishedAfter: pagePublishedDefault,
     resultsCount: 0,
     pageTag: pageTagDefault,
     nextPageTag: "",
     prevPageTag: "",
     textSearch: "",
+    comparisonCartListMax: comparisonCartListDefault,
   });
 
   // function getContentDateTime() {
@@ -75,19 +84,42 @@ function AppHome() {
     if (paramInUse.textSearch !== "") {
       handleChannelSearch();
     }
+    console.log('UseEffet App-Home');
   }, [paramInUse.regionId,
   paramInUse.languageId,
   paramInUse.resultsPerPage,
   paramInUse.resultsOrdering,
   paramInUse.textSearch,
   paramInUse.topicParentId,
-  paramInUse.pageTag]);
+  paramInUse.pageTag,
+    comparisonCart,]);
 
+  //******************************************************************************************************
+  //******************************************************************************************************
   async function handleParam(namePassed, valuePassed) {
     setParamInUse({ ...paramInUse, [namePassed]: valuePassed });
-    console.log(paramInUse);
+    console.log("handleParam-paramInUse", namePassed, valuePassed);
   }
 
+  //******************************************************************************************************
+  //******************************************************************************************************
+  async function handleComparisionCartAdd(newComparisonStatistics) {
+    const comparisonCartIndex = comparisonCart.findIndex(
+      (chart) => chart.channelId === newComparisonStatistics.channelId);
+    if (comparisonCartIndex !== -1) {
+      // Channel Already added for Comparision
+      notifyAlert("error", 'Opps!!! Channel Existed in Comparison Cart.', 2000);
+    } else {
+      // comparisonCart.push(newComparisonStatistics);
+      // setComparisonCart(prevState => ({...prevState,newComparisonStatistics}));
+      setComparisonCart(current => [...current, newComparisonStatistics]);
+    }
+
+    // console.log("comparisonCartAddition", comparisonCart);
+  }
+
+  //******************************************************************************************************
+  //******************************************************************************************************
   const fetchChannelsSearchData = async (text2Search) => {
     const regionInUse = paramInUse.regionId;
     const languageInUse = paramInUse.languageId;
@@ -95,23 +127,32 @@ function AppHome() {
     const resultsPerPage = paramInUse.resultsPerPage;
     const resultsOrdering = paramInUse.resultsOrdering;
     const resultPageToken = paramInUse.pageTag;
+    const resultsPublishedAfter = paramInUse.resultsPublishedAfter;
+    const resultsPublishedBefore = paramInUse.resultsPublishedBefore;
+    const text2SearchInUrl = text2Search.replace(/[|]+/g, "%7C");
 
     let _searchUri = "/search?key=" + youTubeApiKey
     _searchUri = _searchUri + `&type=channel`;
     _searchUri = _searchUri + `&part=snippet`;
     _searchUri = _searchUri + `&maxResults=${resultsPerPage}`;
     _searchUri = _searchUri + `&order=${resultsOrdering}`;
-    _searchUri = _searchUri + "&q=" + text2Search;
+    _searchUri = _searchUri + "&q=" + text2SearchInUrl;//text2Search;
     _searchUri = _searchUri + ((regionInUse !== regionDefault) ? "&regionCode=" + regionInUse : "");
     _searchUri = _searchUri + ((languageInUse !== languageDefault) ? "&relevanceLanguage=" + languageInUse : "");
     _searchUri = _searchUri + ((topicParentInUse !== topicParentDefault) ? "&topicId=" + topicParentInUse : "");
+    _searchUri = _searchUri + ((resultsPublishedAfter !== pagePublishedDefault) ? `&publishedAfter=${resultsPublishedAfter + 'T00:00:00Z'}` : "");
+    _searchUri = _searchUri + ((resultsPublishedBefore !== pagePublishedDefault) ? `&publishedBefore=${resultsPublishedBefore + 'T00:00:00Z'}` : "");
     _searchUri = _searchUri + ((resultPageToken !== pageTagDefault) ? `&pageToken=${resultPageToken}` : "");
 
     const response = await axios.get(youtubeUrl + _searchUri);
     const data = await response.data;
+    // console.log(_searchUri);
+    // console.log(data);
     return data;
   };
 
+  //******************************************************************************************************
+  //******************************************************************************************************
   const fetchChannelsData = async (_channelsSearchListIds) => {
     const resultsPerPage = paramInUse.resultsPerPage;
     //URL for loading channel's data with  statical information
@@ -125,6 +166,8 @@ function AppHome() {
     return data;
   }
 
+  //******************************************************************************************************
+  //******************************************************************************************************
   async function handleChannelSearch() {
     const text2Search = paramInUse.textSearch;
 
@@ -133,8 +176,29 @@ function AppHome() {
     }
     else {
 
+      // Show the initial loading toast
+      const loadingToastId = toast.info('Loading Channel Information ...', {
+        autoClose: 5000,
+        closeOnClick: false,
+        draggable: true,
+        pauseOnHover: false,
+        progress: undefined,
+        theme: "light",
+        closeButton: false,
+      });
+
+      let intervalId; // To keep track of the interval
       try {
-        //Getting Channels Search List
+        // Start a 2-second interval to repeatedly show the loading toast
+        intervalId = setInterval(() => {
+          toast.update(loadingToastId, {
+            render: 'Loading Channel Information ...', // Update the message
+          });
+        }, 5000);
+
+        let channelsListData = channelsListingData; //Channels Listing Sample Data
+
+        // // Getting Channels Searched List via uTube API
         // let channelsSearchData = await fetchChannelsSearchData(text2Search);
 
         // const _nextPageToken = channelsSearchData.hasOwnProperty('nextPageToken') ? channelsSearchData['nextPageToken'] : "";
@@ -152,9 +216,12 @@ function AppHome() {
 
         // _channelsSearchListIds = _channelsSearchListIds.substring(1);
 
-        // //Getting Channels List with information
+        // //Getting Channels List with Primary Information
         // let channelsListData = await fetchChannelsData(_channelsSearchListIds);
-        let channelsListData = channelsListingData;
+
+        //
+        // Separating Channels Information from the loaded Channels list
+        //
         const _channelsList = channelsListData['items'];
 
         const _channels = [];
@@ -165,6 +232,7 @@ function AppHome() {
             publishedAt: channel['snippet']['publishedAt'],
             description: channel['snippet']['description'],
             thumbnailUrl: channel['snippet']['thumbnails']['medium']['url'],
+            customUrl: channel['snippet']['customUrl'],
             videoCount: channel['statistics']["videoCount"],
             viewCount: channel['statistics']["viewCount"],
             subscriberCount: channel['statistics']["subscriberCount"],
@@ -178,15 +246,21 @@ function AppHome() {
         setChannels(_channels);
 
       } catch (error) {
-        console.error('Error:', error);
-        const errorCode = error.response.status;
+        console.error('Error fetching or processing data:', error);
+        const errorCode = error.response.hasOwnProperty('status') ? error.response.status : 0;
         if (errorCode === 403) {
           notifyAlert("error", 'Current Quota Exceeds, Try Again Later next Day!', 5000);
         }
+      } finally {
+        // Clear the interval when the try-catch block is done
+        clearInterval(intervalId);
+        toast.dismiss(loadingToastId);
       }
     }
   }
 
+  //******************************************************************************************************
+  //******************************************************************************************************
   return (
     <div className="AppHomeContainer">
       <ToastContainer />
@@ -194,6 +268,8 @@ function AppHome() {
         paramInUse={paramInUse}
         setParamInUse={setParamInUse}
         handleParam={handleParam}
+        videoDurations={videoDurations}
+        comparisonCart={comparisonCart}
       />
       <AppBody
         channels={channels}
@@ -207,8 +283,33 @@ function AppHome() {
         paramInUse={paramInUse}
         setParamInUse={setParamInUse}
         handleParam={handleParam}
+        videoDurations={videoDurations}
+        comparisonCart={comparisonCart}
+        handleComparisionCartAdd={handleComparisionCartAdd}
       />
       <AppFooter AppYear={year} />
+
+      {/* <!-- Modal --> */}
+      <div className="modal fade" id="comparatorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="comparatorModalLabel" aria-hidden="true">
+        <div className="modal-dialog  modal-xl modal-dialog-centered modal-dialog-scrollable">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="comparatorModalLabel">Channel's Comparision</h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-body">
+              <AppComparisonCart
+                videoDurations={videoDurations}
+                comparisonCart={comparisonCart}
+              />
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={(e) => { setComparisonCart([]); }}>Clear Cart</button>
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

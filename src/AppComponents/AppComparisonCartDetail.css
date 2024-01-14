@@ -1,0 +1,57 @@
+.AppComparisonCartDetailArea {
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px #ccc;
+    padding: 5px;
+    margin: 5px;
+    float: left;
+    text-align: center;
+    width:-webkit-fill-available;
+}
+
+.AppComparisonCartDetailHeader {
+    width: auto;
+    align-items: center;
+    border: groove;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.AppComparisonCartDetailHeaderImg {
+    width: 50%;
+    height: 75px;
+    border-radius: 10px;
+}
+
+.AppComparisonCartDetailHeaderh6 {
+    font-size: large;
+    margin: 0px;
+    background-image: linear-gradient(to left, red, green, blue);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.AppComparisonCartDetailHeaderp {
+    font-size: small;
+    margin: 0px;
+    background-image: linear-gradient(to left, red, green, blue);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    border-bottom: ridge;
+}
+
+.AppComparisonCartDetailDividerp {
+    margin: 10px 0px 0px 0px;
+    font-size: x-small;
+    }
+    
+.AppComparisonCartDetailVideop {
+    margin: 15px 5px 5px 5px;
+    font-size: small;
+    border-bottom: groove;
+    border-radius: 10px;
+}
