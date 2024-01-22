@@ -11,8 +11,9 @@ export default function AppBodyChannelStatisticsDetail(props) {
     return (
         <div className='AppBodyChannelStatisticsDetail'>
             <div className='AppBodyStatisticsDetailLabel'>
-                <p>{videoStats.statistics.duration} </p>
-                <p>({videoStats.statistics.count})</p>
+                <p>( {videoStats.statistics.count} )</p>
+                <p>[ {videoStats.statistics.duration} ]</p>
+                <p>{videoStats.statistics.durationLength} </p>
             </div>
             {/* Views */}
             <div className='AppBodyStatisticsDetailColumn'>
@@ -23,22 +24,24 @@ export default function AppBodyChannelStatisticsDetail(props) {
                 <div className='AppBodyStatisticsDetailColumnDetail'>
                     <div className='AppBodyStatisticsDetailColumnDetailInfo'>
                         <div className="AppBodyStatisticsDetailAreaUrl">
-                            <img src={videoStats.statistics.views.minThumbnailUrl}  alt={videoStats.statistics.views.minId} onError={(e) => e.target.src = altImg} />
+                            <img src={videoStats.statistics.views.minThumbnailUrl} alt={videoStats.statistics.views.minId} onError={(e) => e.target.src = altImg} />
                         </div>
                         <div className="AppBodyStatisticsDetailAreaInfo">
                             {/* <h6>Min</h6> */}
                             <h6>{compactNumberFormat.format(videoStats.statistics.views.min)}</h6>
                             <h6>{videoStats.statistics.views.minPublishedAt.substring(0, 10)}</h6>
+                            <p>Low Ranked</p>
                         </div>
                     </div>
                     <div className='AppBodyStatisticsDetailColumnDetailInfo'>
                         <div className="AppBodyStatisticsDetailAreaUrl">
-                            <img src={videoStats.statistics.views.maxThumbnailUrl}   alt={videoStats.statistics.views.maxId} onError={(e) => e.target.src = altImg} />
+                            <img src={videoStats.statistics.views.maxThumbnailUrl} alt={videoStats.statistics.views.maxId} onError={(e) => e.target.src = altImg} />
                         </div>
                         <div className="AppBodyStatisticsDetailAreaInfo">
                             {/* <h6>Max</h6> */}
                             <h6>{compactNumberFormat.format(videoStats.statistics.views.max)}</h6>
                             <h6>{videoStats.statistics.views.maxPublishedAt.substring(0, 10)}</h6>
+                            <p>High Ranked</p>
                         </div>
                     </div>
                 </div>
@@ -56,20 +59,22 @@ export default function AppBodyChannelStatisticsDetail(props) {
                 <div className='AppBodyStatisticsDetailColumnDetail'>
                     <div className='AppBodyStatisticsDetailColumnDetailInfo'>
                         <div className="AppBodyStatisticsDetailAreaUrl">
-                            <img src={videoStats.statistics.likes.minThumbnailUrl}   alt={videoStats.statistics.likes.minId} onError={(e) => e.target.src = altImg} />
+                            <img src={videoStats.statistics.likes.minThumbnailUrl} alt={videoStats.statistics.likes.minId} onError={(e) => e.target.src = altImg} />
                         </div>
                         <div className="AppBodyStatisticsDetailAreaInfo">
                             <h6>{compactNumberFormat.format(videoStats.statistics.likes.min)}</h6>
                             <h6>{videoStats.statistics.likes.minPublishedAt.substring(0, 10)}</h6>
-                        </div>
+                            <p>Low Ranked</p>
+                       </div>
                     </div>
                     <div className='AppBodyStatisticsDetailColumnDetailInfo'>
                         <div className="AppBodyStatisticsDetailAreaUrl">
-                            <img src={videoStats.statistics.likes.maxThumbnailUrl}   alt={videoStats.statistics.likes.maxId} onError={(e) => e.target.src = altImg} />
+                            <img src={videoStats.statistics.likes.maxThumbnailUrl} alt={videoStats.statistics.likes.maxId} onError={(e) => e.target.src = altImg} />
                         </div>
                         <div className="AppBodyStatisticsDetailAreaInfo">
                             <h6>{compactNumberFormat.format(videoStats.statistics.likes.max)}</h6>
                             <h6>{videoStats.statistics.likes.maxPublishedAt.substring(0, 10)}</h6>
+                            <p>High Ranked</p>
                         </div>
                     </div>
                 </div>
@@ -87,20 +92,22 @@ export default function AppBodyChannelStatisticsDetail(props) {
                 <div className='AppBodyStatisticsDetailColumnDetail'>
                     <div className='AppBodyStatisticsDetailColumnDetailInfo'>
                         <div className="AppBodyStatisticsDetailAreaUrl">
-                            <img src={videoStats.statistics.comments.minThumbnailUrl}   alt={videoStats.statistics.comments.minId} onError={(e) => e.target.src = altImg} />
+                            <img src={videoStats.statistics.comments.minThumbnailUrl} alt={videoStats.statistics.comments.minId} onError={(e) => e.target.src = altImg} />
                         </div>
                         <div className="AppBodyStatisticsDetailAreaInfo">
                             <h6>{compactNumberFormat.format(videoStats.statistics.comments.min)}</h6>
                             <h6>{videoStats.statistics.comments.minPublishedAt.substring(0, 10)}</h6>
-                        </div>
+                            <p>Low Ranked</p>
+                       </div>
                     </div>
                     <div className='AppBodyStatisticsDetailColumnDetailInfo'>
                         <div className="AppBodyStatisticsDetailAreaUrl">
-                            <img src={videoStats.statistics.comments.maxThumbnailUrl}   alt={videoStats.statistics.comments.maxId} onError={(e) => e.target.src = altImg} />
+                            <img src={videoStats.statistics.comments.maxThumbnailUrl} alt={videoStats.statistics.comments.maxId} onError={(e) => e.target.src = altImg} />
                         </div>
                         <div className="AppBodyStatisticsDetailAreaInfo">
                             <h6>{compactNumberFormat.format(videoStats.statistics.comments.max)}</h6>
                             <h6>{videoStats.statistics.comments.maxPublishedAt.substring(0, 10)}</h6>
+                            <p>High Ranked</p>
                         </div>
                     </div>
                 </div>

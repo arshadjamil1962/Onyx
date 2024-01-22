@@ -1,0 +1,12 @@
+.AppComparisonChartStackedArea {
+    width: 100%;
+    display:inline-block;
+    text-align: -webkit-center;
+}
+
+.AppComparisonChartStackedAreaGraph {
+    width : 75%;
+    padding: 15px;
+    border: double;
+    margin: 25px;
+}

@@ -14,6 +14,8 @@ export default function AppBodyOptions(props) {
     const datePublishedBefore = (props.paramInUse.resultsPublishedBefore !== "") ? new Date(props.paramInUse.resultsPublishedBefore.replace(/-/g, '\/')) : "";
     const datePublishedAfter = (props.paramInUse.resultsPublishedAfter !== "") ? new Date(props.paramInUse.resultsPublishedAfter.replace(/-/g, '\/')) : "";
 
+    //******************************************************************************************************
+    //******************************************************************************************************
     function handleDateEntry(dateNamePassed, dateValuePassed) {
         if (dateValuePassed !== "") {
             const formattedDate = dateValuePassed.toLocaleDateString('en-GB', {
@@ -27,6 +29,8 @@ export default function AppBodyOptions(props) {
         }
     }
 
+    //******************************************************************************************************
+    //******************************************************************************************************
     return (
         <div className='AppBodyOptionsContainer'>
             <div className='AppBodyOptionsFilter'>

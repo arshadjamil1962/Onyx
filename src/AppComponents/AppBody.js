@@ -43,10 +43,12 @@ export default function AppBody(props) {
     for (const videoDuration of videoDurationsList) {
       var initChannelStatistics = ({
         "channelId": channelId,
-        "statisticsType": videoDuration,
+        "statisticsType": videoDuration.name,
+        "durationLength": videoDuration.durationLength,
       });
       channelsVideoStatistics.push(initChannelStatistics);
     }
+
   }
 
   //******************************************************************************************************
@@ -55,7 +57,12 @@ export default function AppBody(props) {
     var comparisonCartCount = props.comparisonCart.length;
     var comparisonCartListMax = props.paramInUse.comparisonCartListMax;
 
-    if (comparisonCartCount < comparisonCartListMax) {
+    const comparisonCartIndex = props.comparisonCart.findIndex(
+      (chart) => chart.channelId === e.target.id);
+    if (comparisonCartIndex !== -1) {
+      // Channel Already added for Comparision
+      notifyAlert("error", 'Opps!!! Channel Existed in Comparison Cart.', 2000);
+    } else if (comparisonCartCount < comparisonCartListMax) {
       console.log('handleComparisionCart: ');//, e.target.id, _channelInDemand);
 
       const _channelInDemand = props.channels.filter(channel => channel.id.includes(e.target.id))[0];
@@ -63,21 +70,21 @@ export default function AppBody(props) {
 
       initializeChannelStatisticArray(e.target.id);
 
-      // await getChannelsVideosList(e.target.id); //Get Videos From uTube API
+      await getChannelsVideosList(e.target.id); //Get Videos From uTube API
 
-      //Sample Videos Statistics loading
-      const channelVideosSample = channelVideosSampleData.filter(channel => channel.channelId.includes(e.target.id));
-      if (channelVideosSample.length !== 0) {
-        for (const video of channelVideosSample) {
-          await channelVideoAnalysis(e.target.id, video);
-          setValidChannelVideosData(true);
-        }
-      } else {
-        setValidChannelVideosData(false);
-      }
+      // //Sample Videos Statistics loading
+      // const channelVideosSample = channelVideosSampleData.filter(channel => channel.channelId.includes(e.target.id));
+      // if (channelVideosSample.length !== 0) {
+      //   for (const video of channelVideosSample) {
+      //     await channelVideoAnalysis(e.target.id, video);
+      //     setValidChannelVideosData(true);
+      //   }
+      // } else {
+      //   setValidChannelVideosData(false);
+      // }
 
       // Creating Comparison Statistics for recpective Channel
-      if (validChannelVideosData) {
+      // if (validChannelVideosData) {
         const newComparisonStatistics = ({
           channelId: _channelInDemand.id,
           channelCustomUrl: _channelInDemand.customUrl,
@@ -95,6 +102,7 @@ export default function AppBody(props) {
             var newCartStats = ({
               [videoStats.statisticsType]:
               {
+                videoDuration: videoStats.durationLength,
                 VideoTotal: videoStats.statistics.count,
                 ViewsTotal: videoStats.statistics.views.count,
                 ViewsAveragePerVideo: videoStats.statistics.views.count / videoStats.statistics.count,
@@ -118,6 +126,7 @@ export default function AppBody(props) {
             var newCartStats = ({
               [videoStats.statisticsType]:
               {
+                videoDuration: videoStats.durationLength,
                 VideoTotal: 0,
                 ViewsTotal: 0,
                 ViewsAveragePerVideo: 0,
@@ -145,9 +154,9 @@ export default function AppBody(props) {
 
         // props.comparisonCart.push(newComparisonStatistics);
         props.handleComparisionCartAdd(newComparisonStatistics);
-      }
+      // }
     } else {
-      notifyAlert("warning", 'Reached Comparison Cart Max Limit: ' + comparisonCartListMax, 3000);
+      notifyAlert("warning", 'Reached Comparison Cart Max Limit of ' + comparisonCartListMax, 3000);
     }
   }
 
@@ -244,13 +253,13 @@ export default function AppBody(props) {
           let durationCategory;
           switch (true) {
             case durationInMinutes < 4:
-              durationCategory = 'short';
+              durationCategory = 'Short';
               break;
             case durationInMinutes <= 20:
-              durationCategory = 'medium';
+              durationCategory = 'Medium';
               break;
             default:
-              durationCategory = 'long';
+              durationCategory = 'Long';
           }
 
           const newVideo = {
@@ -352,9 +361,12 @@ export default function AppBody(props) {
     const channelStatsIndex = channelsVideoStatistics.findIndex(
       (stats) => stats.channelId === statsChannelId && stats.statisticsType === statsVideoDuration
     );
+    
     if (channelStatsIndex !== -1) {
       channelStats = channelsVideoStatistics[channelStatsIndex];
     }
+
+    var statsVideoDurationLength = channelStats.durationLength;
 
     var _videosCount = channelStats.hasOwnProperty('statistics') ? channelStats.statistics.count : 0;
 
@@ -461,6 +473,7 @@ export default function AppBody(props) {
 
     const newVideoStatistic = ({
       duration: statsVideoDuration,
+      durationLength: statsVideoDurationLength,
       count: _videosCount,
       // published1stDate: _vedieoPublishedDateMin,
       views: {
@@ -518,6 +531,7 @@ export default function AppBody(props) {
     const newChannelsStatistics = ({
       channelId: statsChannelId,
       statisticsType: statsVideoDuration,
+      durationLength: statsVideoDurationLength,
       statistics: newVideoStatistic,
     });
 
@@ -539,13 +553,26 @@ export default function AppBody(props) {
     <div className="AppBodyContainer">
       <div className="AppBodyContainerHeader">
         <div className="AppBodyContainerTitle">
-          <h6>Channel's </h6>
+          <h6>Channels </h6>
         </div>
         {/* <div className="AppBodyContainerSelections">
           <div className="AppBodyContainerSelectionsItem"> Region: {regionInUseTitle} </div>
           <div className="AppBodyContainerSelectionsItem">Language: {languageInUseTitle}</div>
           {(props.paramInUse.textSearch !== '') && <div className="AppBodyContainerSelectionsItem">Searched for: {props.paramInUse['textSearch']}</div>}
         </div> */}
+        <div className="AppBodyContainerComparator">
+          {/* <!-- Button trigger modal --> */}
+          <button type="button" className="AppBodyComparatorListImgBtn btn btn-primary" data-bs-toggle="modal" data-bs-target="#comparatorModal" disabled={props.comparisonCart.length === 0}>
+            {/* <span className="badge bg-info rounded-pill"> */}
+            <span className="top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {props.comparisonCart.length}
+            </span>
+          </button>
+          {/* <!-- Button trigger modal --> */}
+          <button type="button" className="AppBodyComparatorImgBtn btn btn-primary" data-bs-toggle="modal" data-bs-target="#comparatorModal" disabled={props.comparisonCart.length === 0}>
+          </button>
+        </div>
+
         <div className="AppBodyContainerPageSelector">
           <h6>{(props.paramInUse.resultsCount === 0) ? "" : props.paramInUse.resultsCount + " Matching's"}</h6>
           <button type="button" className="btnPrevPageTag btn btn-primary btn-sm" disabled={props.paramInUse.prevPageTag === "" ? true : false}

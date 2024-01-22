@@ -55,19 +55,6 @@ export default function AppHeader(props) {
           </div>
         </div>
 
-        <div className="AppHeaderContainerComparator">
-          {/* <!-- Button trigger modal --> */}
-          <button type="button" className="comparatorListImgBtn btn btn-primary" data-bs-toggle="modal" data-bs-target="#comparatorModal" disabled={props.comparisonCart.length == 0}>
-            {/* <span className="badge bg-info rounded-pill"> */}
-            <span className="top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              {props.comparisonCart.length}
-            </span>
-          </button>
-          {/* <!-- Button trigger modal --> */}
-          <button type="button" className="comparatorImgBtn btn btn-primary" data-bs-toggle="modal" data-bs-target="#comparatorModal" disabled={props.comparisonCart.length == 0}>
-          </button>
-
-        </div>
       </header>
 
       {/* <!-- Modal --> */}

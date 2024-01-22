@@ -1,5 +1,5 @@
 [
-    "long", 
-    "medium", 
-    "short"
+    {"name": "Long", "durationLength": "Over 20 Min."}, 
+    {"name": "Medium", "durationLength": "4-20 Min."}, 
+    {"name": "Short", "durationLength": "Under 4 Min."}
 ]

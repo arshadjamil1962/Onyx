@@ -1,0 +1,12 @@
+.AppComparisonChartBarArea {
+    width: 100%;
+    display:inline-block;
+    text-align: -webkit-center;
+}
+
+.AppComparisonChartBarAreaGraph {
+    width : 75%;
+    padding: 15px;
+    border: double;
+    margin: 25px;
+}

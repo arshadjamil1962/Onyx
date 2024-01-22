@@ -2,7 +2,7 @@
   display: inline-block;
   margin: 20px auto 20px auto;
   background: #fff;
-  padding: 15px;
+  padding: 15px 5px;
   border-radius: 7px;
   box-shadow: 0 1px 5px rgb(138, 137, 137);
   width: 100%;
@@ -28,6 +28,8 @@
 }
 
 .AppBodyContainerTitle {
+  width: 10%;
+  padding-left: 10px;
   align-self: center;
 }
 
@@ -81,7 +83,7 @@
 }
 
 .AppBodyContainerBodyOptions {
-  width: 18%;
+  width: 15%;
   margin: 10px auto 10px auto;
   background: #fff;
   padding: 15px;
@@ -92,10 +94,10 @@
 }
 
 .AppBodyContainerBodyChannels {
-  width: 80%;
+  width: 84%;
   margin: 10px auto 10px auto;
   background: #fff;
-  padding: 15px;
+  padding: 15px 10px;
   border-radius: 7px;
   box-shadow: 0 1px 5px rgb(138, 137, 137);
   min-height: 60vh;
@@ -106,4 +108,32 @@
   display: flex;
   justify-content: center;
   height: 300px;
+}
+
+.AppBodyContainerComparator {
+  width: 20%;
+  height: 40px;
+  display: flex;
+  justify-content:center; 
+}
+
+.AppBodyComparatorImgBtn {
+  background-image: url('../ImgComponents/compare1.jpg');
+  width: 50px;
+  height: -webkit-fill-available;
+  background-size: cover;
+  background-position: center;
+  border: none;
+  border-radius: 0% 25% 25% 0%;
+}
+
+.AppBodyComparatorListImgBtn {
+  background-image: url('../ImgComponents/list2.jpg');
+  width: 50px;
+  height: -webkit-fill-available;
+  background-size: cover;
+  background-position: center;
+  border: none;
+  border-radius: 25% 0% 0% 25%;
+  /* margin-right: 2px; */
 }

@@ -105,12 +105,13 @@
 }
 
 .AppBodyStatisticsHeaderLabel p {
-    font-size: medium;
+    font-size: small;
     background-image: linear-gradient(to left, red, green, blue);
     -webkit-background-clip: text;
     -moz-background-clip: text;
     background-clip: text;
     color: transparent;
+    margin:0px;
 }
 
 .AppBodyStatisticsHeaderColumn {

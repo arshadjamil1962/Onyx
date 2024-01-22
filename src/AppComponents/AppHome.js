@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
+import './AppHome.css';
+
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,6 +24,8 @@ import AppBody from "./AppBody";
 
 import { youTubeApiKey, youtubeUrl, notifyAlert } from "./AppComponents";
 import AppComparisonCart from "./AppComparisonCart";
+import AppComparisonChartBar from "./AppComparisonChartBar";
+import AppComparisonChartStacked from "./AppComparisonChartStacked";
 
 function AppHome() {
   const year = new Date().getFullYear();
@@ -48,6 +52,7 @@ function AppHome() {
 
   const [channels, setChannels] = useState([]);
   const [comparisonCart, setComparisonCart] = useState([]);
+  const [chartData, setChartData] = useState([]);
 
   const [paramInUse, setParamInUse] = useState({
     regionId: regionDefault,
@@ -65,6 +70,8 @@ function AppHome() {
     prevPageTag: "",
     textSearch: "",
     comparisonCartListMax: comparisonCartListDefault,
+    comparisonCartShowChartBar: false,
+    comparisonCartShowChartBarStacked: false
   });
 
   // function getContentDateTime() {
@@ -104,18 +111,37 @@ function AppHome() {
   //******************************************************************************************************
   //******************************************************************************************************
   async function handleComparisionCartAdd(newComparisonStatistics) {
-    const comparisonCartIndex = comparisonCart.findIndex(
-      (chart) => chart.channelId === newComparisonStatistics.channelId);
-    if (comparisonCartIndex !== -1) {
-      // Channel Already added for Comparision
-      notifyAlert("error", 'Opps!!! Channel Existed in Comparison Cart.', 2000);
-    } else {
-      // comparisonCart.push(newComparisonStatistics);
-      // setComparisonCart(prevState => ({...prevState,newComparisonStatistics}));
-      setComparisonCart(current => [...current, newComparisonStatistics]);
-    }
+    // comparisonCart.push(newComparisonStatistics);
+    // setComparisonCart(prevState => ({...prevState,newComparisonStatistics}));
+    setComparisonCart(current => [...current, newComparisonStatistics]);
 
     // console.log("comparisonCartAddition", comparisonCart);
+  }
+
+  //******************************************************************************************************
+  //******************************************************************************************************
+  async function handleComparisionCartdelete(comparisonCartChannelId) {
+    const newCartList = comparisonCart.filter(cart => cart.channelId !== comparisonCartChannelId);
+    console.log("handleComparisionCartdelete", newCartList)
+    if (newCartList.length === 0) {
+      // var myModalEl = document.getElementById('comparatorModal');
+      // var modal = bootstrap.Modal.getInstance(myModalEl)
+      // modal.hide();
+      // modal.toggle();
+      // myModalEl.remove();
+      // document.getElementById("search-input").focus();
+      // myModalEl.style.display = 'none';
+
+      // Hide the modal
+      // modal.hide();
+      // Hide the backdrop
+      // document.querySelector('.modal-backdrop').style.display = 'none';
+
+      setComparisonCart([]);
+    } else {
+      setComparisonCart(newCartList);
+    }
+    // console.log("comparisonCartDelete", comparisonCartChannelId, newCartList);
   }
 
   //******************************************************************************************************
@@ -179,6 +205,7 @@ function AppHome() {
       // Show the initial loading toast
       const loadingToastId = toast.info('Loading Channel Information ...', {
         autoClose: 5000,
+        position: "top-center",
         closeOnClick: false,
         draggable: true,
         pauseOnHover: false,
@@ -196,28 +223,28 @@ function AppHome() {
           });
         }, 5000);
 
-        let channelsListData = channelsListingData; //Channels Listing Sample Data
+        // let channelsListData = channelsListingData; //Channels Listing Sample Data
 
         // // Getting Channels Searched List via uTube API
-        // let channelsSearchData = await fetchChannelsSearchData(text2Search);
+        let channelsSearchData = await fetchChannelsSearchData(text2Search);
 
-        // const _nextPageToken = channelsSearchData.hasOwnProperty('nextPageToken') ? channelsSearchData['nextPageToken'] : "";
-        // const _prevPageToken = channelsSearchData.hasOwnProperty('prevPageToken') ? channelsSearchData['prevPageToken'] : "";
-        // const _totalResults = channelsSearchData['pageInfo']['totalResults'] || 0;
+        const _nextPageToken = channelsSearchData.hasOwnProperty('nextPageToken') ? channelsSearchData['nextPageToken'] : "";
+        const _prevPageToken = channelsSearchData.hasOwnProperty('prevPageToken') ? channelsSearchData['prevPageToken'] : "";
+        const _totalResults = channelsSearchData['pageInfo']['totalResults'] || 0;
 
-        // setParamInUse({ ...paramInUse, 'prevPageTag': _prevPageToken, 'nextPageTag': _nextPageToken, 'resultsCount': _totalResults });
+        setParamInUse({ ...paramInUse, 'prevPageTag': _prevPageToken, 'nextPageTag': _nextPageToken, 'resultsCount': _totalResults });
 
-        // //Getting Channels ID for loading data with statical information
-        // const _channelsSearchList = channelsSearchData['items'];
-        // let _channelsSearchListIds = "";
-        // for (const channel of _channelsSearchList) {
-        //   _channelsSearchListIds = _channelsSearchListIds + "," + channel['snippet']['channelId'];
-        // };
+        //Getting Channels ID for loading data with statical information
+        const _channelsSearchList = channelsSearchData['items'];
+        let _channelsSearchListIds = "";
+        for (const channel of _channelsSearchList) {
+          _channelsSearchListIds = _channelsSearchListIds + "," + channel['snippet']['channelId'];
+        };
 
-        // _channelsSearchListIds = _channelsSearchListIds.substring(1);
+        _channelsSearchListIds = _channelsSearchListIds.substring(1);
 
-        // //Getting Channels List with Primary Information
-        // let channelsListData = await fetchChannelsData(_channelsSearchListIds);
+        //Getting Channels List with Primary Information
+        let channelsListData = await fetchChannelsData(_channelsSearchListIds);
 
         //
         // Separating Channels Information from the loaded Channels list
@@ -268,8 +295,6 @@ function AppHome() {
         paramInUse={paramInUse}
         setParamInUse={setParamInUse}
         handleParam={handleParam}
-        videoDurations={videoDurations}
-        comparisonCart={comparisonCart}
       />
       <AppBody
         channels={channels}
@@ -295,17 +320,33 @@ function AppHome() {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="comparatorModalLabel">Channel's Comparision</h1>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              {!paramInUse.comparisonCartShowChartBar && !paramInUse.comparisonCartShowChartBarStacked && <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>}
             </div>
             <div className="modal-body">
-              <AppComparisonCart
+              {!paramInUse.comparisonCartShowChartBar && !paramInUse.comparisonCartShowChartBarStacked && <AppComparisonCart
                 videoDurations={videoDurations}
                 comparisonCart={comparisonCart}
-              />
+                handleComparisionCartdelete={handleComparisionCartdelete}
+                handleParam={handleParam}
+                setChartData={setChartData}
+              />}
+
+              {paramInUse.comparisonCartShowChartBar && <AppComparisonChartBar
+                handleParam={handleParam}
+                chartData={chartData}
+              />}
+
+              {paramInUse.comparisonCartShowChartBarStacked && <AppComparisonChartStacked
+                handleParam={handleParam}
+                chartData={chartData}
+              />}
+
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={(e) => { setComparisonCart([]); }}>Clear Cart</button>
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              {!paramInUse.comparisonCartShowChartBar && !paramInUse.comparisonCartShowChartBarStacked && <button type="button" className="btn btn-warning" data-bs-dismiss="modal" onClick={(e) => { setComparisonCart([]); }}>Clear Cart</button>}
+              {!paramInUse.comparisonCartShowChartBar && !paramInUse.comparisonCartShowChartBarStacked && <button type="button" className="btn btn-primary" data-bs-dismiss="modal">Close</button>}
+              {paramInUse.comparisonCartShowChartBar && <button type="button" className="btn btn-primary" onClick={(e) => { handleParam('comparisonCartShowChartBar', false); }}>Back 2 Comparison</button>}
+              {paramInUse.comparisonCartShowChartBarStacked && <button type="button" className="btn btn-primary" onClick={(e) => { handleParam('comparisonCartShowChartBarStacked', false); }}>Back 2 Comparison</button>}
             </div>
           </div>
         </div>

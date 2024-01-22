@@ -7,7 +7,6 @@ import altImg from "../ImgComponents/write6.jpg";
 export default function AppBodyChannels(props) {
     const compactNumberFormat = new Intl.NumberFormat("en-US", { notation: "compact", compactDisplay: "short", maximumFractionDigits: 2, });
     const averageViewCount = props.channel.viewCount / props.channel.videoCount;
-    const averageSubscriberCount = props.channel.subscriberCount / props.channel.videoCount;
     
     return (
         <div className="AppBodyChannelsArea">
@@ -18,8 +17,8 @@ export default function AppBodyChannels(props) {
             <p className='AppBodyChannelsAreaDescription'>{props.channel.description}</p>
             <div className="AppBodyChannelsAreaStats">
                 <p>Videos: {compactNumberFormat.format(props.channel.videoCount)}</p>
+                <p>Subscribers: {compactNumberFormat.format(props.channel.subscriberCount)}</p>
                 <p>Views: {compactNumberFormat.format(props.channel.viewCount)} - {compactNumberFormat.format(averageViewCount)} Avg.</p>
-                <p>Subscribers: {compactNumberFormat.format(props.channel.subscriberCount)} - {compactNumberFormat.format(averageSubscriberCount)} Avg.</p>
             </div>
 
             <h6>{props.channel.publishedAt.substring(0, 19)}</h6>
@@ -28,7 +27,7 @@ export default function AppBodyChannels(props) {
                 Statistics
             </button>
             <button type="button" className="btnCompare btn btn-primary" id={props.channel.id} onClick={props.handleComparisionCart}>
-                + Compare
+                Comparison +
             </button>
         </div>
     )

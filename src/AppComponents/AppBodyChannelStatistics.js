@@ -15,7 +15,6 @@ export default function AppBodyChannelStatistics(props) {
     const videoStatistics = props.channelsVideoStatistics;
 
     const averageViewCount = props.channelInDemand.viewCount / props.channelInDemand.videoCount;
-    const averageSubscriberCount = props.channelInDemand.subscriberCount / props.channelInDemand.videoCount;
 
     return (
         <div className="AppBodyStatisticsArea">
@@ -34,16 +33,9 @@ export default function AppBodyChannelStatistics(props) {
                     <p>Views: {viewsCount}</p>
                     <p>Subscribers: {subscriberCount}</p> */}
                     <p>Videos: {compactNumberFormat.format(props.channelInDemand.videoCount)}</p>
-                    <p>Views: {compactNumberFormat.format(props.channelInDemand.viewCount)}</p>
                     <p>Subscribers: {compactNumberFormat.format(props.channelInDemand.subscriberCount)}</p>
-                </div>
-                <div className="AppBodyStatisticsAreaStats">
-                    {/* <p>Videos: {props.channelInDemand.videoCount}</p>
-                    <p>Views: {viewsCount}</p>
-                    <p>Subscribers: {subscriberCount}</p> */}
-                    <p>--</p>
+                    <p>Views: {compactNumberFormat.format(props.channelInDemand.viewCount)}</p>
                     <p>Avg-Views: {compactNumberFormat.format(averageViewCount)}</p>
-                    <p>Avg-Subscribers: {compactNumberFormat.format(averageSubscriberCount)}</p>
                 </div>
             </div>
 
@@ -54,8 +46,9 @@ export default function AppBodyChannelStatistics(props) {
                 <div className='AppBodyStatistics'>
                     <div className='AppBodyStatisticsHeader'>
                         <div className='AppBodyStatisticsHeaderLabel'>
-                            <p>Video Duration</p>
-                            <p>( Totals )</p>
+                            <p>( Videos )</p>
+                            <p>[ Duration ]</p>
+                            <p>Length</p>
                         </div>
                         <div className='AppBodyStatisticsHeaderColumn'>
                             <img className='AppBodyStatisticsHeaderImg' src={viewsImg} alt="viewsImg" />
