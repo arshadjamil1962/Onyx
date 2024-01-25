@@ -1,3 +1,7 @@
 .modal-backdrop:nth-child(2n-1) {
     opacity : 0;
   }
+
+.Toastify__toast {
+    width: 400px;
+}

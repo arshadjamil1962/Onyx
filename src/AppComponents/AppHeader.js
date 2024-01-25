@@ -14,6 +14,7 @@ export default function AppHeader(props) {
       notifyAlert("error", 'Opps!!! Search Text is Missing.', 1000);
     }
     else {
+      props.setParamInUse({ ...props.paramInUse, 'prevPageTag': "", 'nextPageTag': "", 'resultsCount': 0 });
       props.handleParam('textSearch', textSearchInUseValue);
     }
   }

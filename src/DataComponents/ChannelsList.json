@@ -1,6 +1,7 @@
 {
     "kind": "youtube#channelListResponse",
     "etag": "r6ZyN3VxdxjLlra5_LH5FsO5ow4",
+    "nextPageToken": "CBQQAA",
     "pageInfo": {
         "totalResults": 10,
         "resultsPerPage": 10

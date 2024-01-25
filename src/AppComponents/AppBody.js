@@ -74,6 +74,7 @@ export default function AppBody(props) {
 
       // //Sample Videos Statistics loading
       // const channelVideosSample = channelVideosSampleData.filter(channel => channel.channelId.includes(e.target.id));
+      // notifyAlert("info", 'Loading Channels Video Information ...', 3000);
       // if (channelVideosSample.length !== 0) {
       //   for (const video of channelVideosSample) {
       //     await channelVideoAnalysis(e.target.id, video);
@@ -85,75 +86,75 @@ export default function AppBody(props) {
 
       // Creating Comparison Statistics for recpective Channel
       // if (validChannelVideosData) {
-        const newComparisonStatistics = ({
-          channelId: _channelInDemand.id,
-          channelCustomUrl: _channelInDemand.customUrl,
-          channelThumbnailUrl: _channelInDemand.thumbnailUrl,
-          channelTitle: _channelInDemand.title,
-          channelPublishedAt: _channelInDemand.publishedAt,
-          channelVideosTotal: _channelInDemand.videoCount,
-          channelViewsTotal: _channelInDemand.viewCount,
-          channelViewsAveragePerVideo: _channelInDemand.viewCount / _channelInDemand.videoCount,
-          channelSubscribersTotal: _channelInDemand.subscriberCount,
-        });
+      const newComparisonStatistics = ({
+        channelId: _channelInDemand.id,
+        channelCustomUrl: _channelInDemand.customUrl,
+        channelThumbnailUrl: _channelInDemand.thumbnailUrl,
+        channelTitle: _channelInDemand.title,
+        channelPublishedAt: _channelInDemand.publishedAt,
+        channelVideosTotal: _channelInDemand.videoCount,
+        channelViewsTotal: _channelInDemand.viewCount,
+        channelViewsAveragePerVideo: _channelInDemand.viewCount / _channelInDemand.videoCount,
+        channelSubscribersTotal: _channelInDemand.subscriberCount,
+      });
 
-        for (const videoStats of channelsVideoStatistics) {
-          if (videoStats.hasOwnProperty('statistics')) {
-            var newCartStats = ({
-              [videoStats.statisticsType]:
-              {
-                videoDuration: videoStats.durationLength,
-                VideoTotal: videoStats.statistics.count,
-                ViewsTotal: videoStats.statistics.views.count,
-                ViewsAveragePerVideo: videoStats.statistics.views.count / videoStats.statistics.count,
-                ViewsMin: videoStats.statistics.views.min,
-                ViewsMax: videoStats.statistics.views.max,
-                LikesTotal: videoStats.statistics.likes.count,
-                LikesAveragePerVideo: videoStats.statistics.likes.count / videoStats.statistics.count,
-                LikesMin: videoStats.statistics.likes.min,
-                LikesMax: videoStats.statistics.likes.max,
-                LikesPerViewsRatio: videoStats.statistics.likes.count / videoStats.statistics.views.count,
-                CommentsTotal: videoStats.statistics.comments.count,
-                CommentsAveragePerVideo: videoStats.statistics.comments.count / videoStats.statistics.count,
-                CommentsMin: videoStats.statistics.comments.min,
-                CommentsMax: videoStats.statistics.comments.max,
-                CommentsPerViewsRatio: videoStats.statistics.comments.count / videoStats.statistics.views.count,
-                VideoRatio2ChannelVideos: videoStats.statistics.count / _channelInDemand.videoCount,
-                ViewsRatio2ChannelViews: videoStats.statistics.views.count / _channelInDemand.viewCount,
-              }
-            });
-          } else {
-            var newCartStats = ({
-              [videoStats.statisticsType]:
-              {
-                videoDuration: videoStats.durationLength,
-                VideoTotal: 0,
-                ViewsTotal: 0,
-                ViewsAveragePerVideo: 0,
-                ViewsMin: 0,
-                ViewsMax: 0,
-                LikesTotal: 0,
-                LikesAveragePerVideo: 0,
-                LikesMin: 0,
-                LikesMax: 0,
-                LikesPerViewsRatio: 0,
-                CommentsTotal: 0,
-                CommentsAveragePerVideo: 0,
-                CommentsMin: 0,
-                CommentsMax: 0,
-                CommentsPerViewsRatio: 0,
-                VideoRatio2ChannelVideos: 0,
-                ViewsRatio2ChannelViews: 0,
-              }
-            });
-          }
+      for (const videoStats of channelsVideoStatistics) {
+        if (videoStats.hasOwnProperty('statistics')) {
+          var newCartStats = ({
+            [videoStats.statisticsType]:
+            {
+              videoDuration: videoStats.durationLength,
+              VideoTotal: videoStats.statistics.count,
+              ViewsTotal: videoStats.statistics.views.count,
+              ViewsAveragePerVideo: videoStats.statistics.views.count / videoStats.statistics.count,
+              ViewsMin: videoStats.statistics.views.min,
+              ViewsMax: videoStats.statistics.views.max,
+              LikesTotal: videoStats.statistics.likes.count,
+              LikesAveragePerVideo: videoStats.statistics.likes.count / videoStats.statistics.count,
+              LikesMin: videoStats.statistics.likes.min,
+              LikesMax: videoStats.statistics.likes.max,
+              LikesPerViewsRatio: videoStats.statistics.likes.count / videoStats.statistics.views.count,
+              CommentsTotal: videoStats.statistics.comments.count,
+              CommentsAveragePerVideo: videoStats.statistics.comments.count / videoStats.statistics.count,
+              CommentsMin: videoStats.statistics.comments.min,
+              CommentsMax: videoStats.statistics.comments.max,
+              CommentsPerViewsRatio: videoStats.statistics.comments.count / videoStats.statistics.views.count,
+              VideoRatio2ChannelVideos: videoStats.statistics.count / _channelInDemand.videoCount,
+              ViewsRatio2ChannelViews: videoStats.statistics.views.count / _channelInDemand.viewCount,
+            }
+          });
+        } else {
+          var newCartStats = ({
+            [videoStats.statisticsType]:
+            {
+              videoDuration: videoStats.durationLength,
+              VideoTotal: 0,
+              ViewsTotal: 0,
+              ViewsAveragePerVideo: 0,
+              ViewsMin: 0,
+              ViewsMax: 0,
+              LikesTotal: 0,
+              LikesAveragePerVideo: 0,
+              LikesMin: 0,
+              LikesMax: 0,
+              LikesPerViewsRatio: 0,
+              CommentsTotal: 0,
+              CommentsAveragePerVideo: 0,
+              CommentsMin: 0,
+              CommentsMax: 0,
+              CommentsPerViewsRatio: 0,
+              VideoRatio2ChannelVideos: 0,
+              ViewsRatio2ChannelViews: 0,
+            }
+          });
+        }
 
-          Object.assign(newComparisonStatistics, newCartStats);
-          // newComparisonStatistics((prev)=>[...prev, newCartStats]);
-        };
+        Object.assign(newComparisonStatistics, newCartStats);
+        // newComparisonStatistics((prev)=>[...prev, newCartStats]);
+      };
 
-        // props.comparisonCart.push(newComparisonStatistics);
-        props.handleComparisionCartAdd(newComparisonStatistics);
+      // props.comparisonCart.push(newComparisonStatistics);
+      props.handleComparisionCartAdd(newComparisonStatistics);
       // }
     } else {
       notifyAlert("warning", 'Reached Comparison Cart Max Limit of ' + comparisonCartListMax, 3000);
@@ -174,6 +175,7 @@ export default function AppBody(props) {
 
     // //Sample Videos Statistics loading
     // const channelVideosSample = channelVideosSampleData.filter(channel => channel.channelId.includes(e.target.id));
+    // notifyAlert("info", 'Loading Channels Video Information ...', 3000);
     // if (channelVideosSample.length !== 0) {
     //   setValidChannelVideosData(true);
     //   for (const video of channelVideosSample) {
@@ -191,7 +193,7 @@ export default function AppBody(props) {
     setChannelVideos([]);
     setChannelDataProcessed(false);
     // Show the initial loading toast
-    const loadingToastId = toast.info('Loading Channel Video Statistics ...', {
+    const loadingToastId = toast.info('Loading Channels Video Statistics ...', {
       autoClose: 5000,
       position: "top-center",
       closeOnClick: false,
@@ -361,7 +363,7 @@ export default function AppBody(props) {
     const channelStatsIndex = channelsVideoStatistics.findIndex(
       (stats) => stats.channelId === statsChannelId && stats.statisticsType === statsVideoDuration
     );
-    
+
     if (channelStatsIndex !== -1) {
       channelStats = channelsVideoStatistics[channelStatsIndex];
     }

@@ -99,7 +99,8 @@ function AppHome() {
   paramInUse.textSearch,
   paramInUse.topicParentId,
   paramInUse.pageTag,
-    comparisonCart,]);
+    // comparisonCart,
+  ]);
 
   //******************************************************************************************************
   //******************************************************************************************************
@@ -124,19 +125,6 @@ function AppHome() {
     const newCartList = comparisonCart.filter(cart => cart.channelId !== comparisonCartChannelId);
     console.log("handleComparisionCartdelete", newCartList)
     if (newCartList.length === 0) {
-      // var myModalEl = document.getElementById('comparatorModal');
-      // var modal = bootstrap.Modal.getInstance(myModalEl)
-      // modal.hide();
-      // modal.toggle();
-      // myModalEl.remove();
-      // document.getElementById("search-input").focus();
-      // myModalEl.style.display = 'none';
-
-      // Hide the modal
-      // modal.hide();
-      // Hide the backdrop
-      // document.querySelector('.modal-backdrop').style.display = 'none';
-
       setComparisonCart([]);
     } else {
       setComparisonCart(newCartList);
@@ -223,9 +211,14 @@ function AppHome() {
           });
         }, 5000);
 
+        // //Channels Sample Data from Channels Data List file
         // let channelsListData = channelsListingData; //Channels Listing Sample Data
+        // const _nextPageToken = channelsListData.hasOwnProperty('nextPageToken') ? channelsListData['nextPageToken'] : "";
+        // const _prevPageToken = channelsListData.hasOwnProperty('prevPageToken') ? channelsListData['prevPageToken'] : "";
+        // const _totalResults  = channelsListData['pageInfo']['totalResults'] || 0;
+        // setParamInUse({ ...paramInUse, 'prevPageTag': _prevPageToken, 'nextPageTag': _nextPageToken, 'resultsCount': _totalResults });
 
-        // // Getting Channels Searched List via uTube API
+        // Getting Channels Searched List via uTube API
         let channelsSearchData = await fetchChannelsSearchData(text2Search);
 
         const _nextPageToken = channelsSearchData.hasOwnProperty('nextPageToken') ? channelsSearchData['nextPageToken'] : "";
