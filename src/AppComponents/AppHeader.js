@@ -27,10 +27,12 @@ export default function AppHeader(props) {
             <img src={logo} className="App-logo" alt="logo" />
           </div>
           <div className='headerH6'>
+            <div className="headerH6Title">
             <h6>
-              Onyx
+              Onyx <p>( Version 2.0 )</p>
             </h6>
-            <p>uTube Tracker & Comparator</p>
+            </div>
+            <p>uTube Analyser & Comparator</p>
           </div>
 
         </div>

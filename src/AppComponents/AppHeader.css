@@ -27,6 +27,7 @@ header {
   -moz-background-clip: text;
   background-clip: text;
   color: transparent;
+  display: flex;
 }
 
 .headerH6 p {
